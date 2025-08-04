@@ -1,0 +1,69 @@
+
+name: CI roxs-voting-app
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-vote:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./vote
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    - name: Test with pytest
+      run: pytest
+
+  test-worker:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./worker
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    - name: Install dependencies
+      run: npm install
+    - name: Run tests
+      run: npm test
+
+  test-result:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./result
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    - name: Install dependencies
+      run: npm install
+    - name: Run tests
+      run: npm test
+
+  build:
+    needs: [test-vote, test-worker, test-result]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build vote image
+      run: docker build -t vote ./vote
+    - name: Build worker image
+      run: docker build -t worker ./worker
+    - name: Build result image
+      run: docker build -t result ./result
