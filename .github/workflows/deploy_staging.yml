@@ -34,6 +34,9 @@ jobs:
           docker compose -f docker-compose.staging.yml build
           docker compose -f docker-compose.staging.yml push
 
+      - name: List scripts directory
+        run: ls -l scripts
+
       - name: Ejecutar deployment script
         run: ./scripts/deploy.sh staging # Pasa el entorno como argumento
 

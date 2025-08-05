@@ -9,6 +9,10 @@ if [ -f .env ]; then
   set +a
 fi
 
+# Exportar las variables para que docker compose las reconozca
+export DOCKERHUB_USERNAME
+export DOCKERHUB_TOKEN
+
 # Detener los contenedores actuales
 docker compose -f docker-compose.${ENV}.yml down
 
