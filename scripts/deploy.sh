@@ -5,9 +5,11 @@ ENV=$1
 # Navegar al directorio del proyecto
 cd /home/jlamadrid/code/dia21/roxs-voting-app
 
-# Cargar variables de entorno
+# Cargar variables de entorno de forma robusta
 if [ -f .env ]; then
-  export $(cat .env | sed 's/#.*//g' | xargs)
+  set -a
+  source .env
+  set +a
 fi
 
 # Detener los contenedores actuales
