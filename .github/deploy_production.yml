@@ -20,6 +20,11 @@ jobs:
       - name: Checkout del codigo
         uses: actions/checkout@v4
 
+      - name: Create .env file
+        run: |
+          echo "DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}" > .env
+          echo "DOCKERHUB_TOKEN=${{ secrets.DOCKERHUB_TOKEN }}" >> .env
+
       - name: Hacer backup de la base de datos
         run: ./scripts/backup.sh
 

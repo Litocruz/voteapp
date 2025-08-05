@@ -1,6 +1,6 @@
 services:
   vote:
-    image: ${secrets.DOCKERHUB_USERNAME}/vote
+    image: ${DOCKERHUB_USERNAME}/vote
     build:
       context: ./vote
     environment:
@@ -28,7 +28,7 @@ services:
       start_period: 5s
 
   worker:
-    image: ${secrets.DOCKERHUB_USERNAME}/worker
+    image: ${DOCKERHUB_USERNAME}/worker
     build:
       context: ./worker
     environment:
@@ -47,7 +47,7 @@ services:
         condition: service_healthy
 
   result:
-    image: ${secrets.DOCKERHUB_USERNAME}/result
+    image: ${DOCKERHUB_USERNAME}/result
     build:
       context: ./result
     environment:
