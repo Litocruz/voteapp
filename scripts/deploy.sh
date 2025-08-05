@@ -13,6 +13,8 @@ fi
 export DOCKERHUB_USERNAME
 export DOCKERHUB_TOKEN
 
+echo $DOCKERHUB_USERNAME
+
 # Detener los contenedores actuales
 docker compose -f docker-compose.${ENV}.yml down
 
