@@ -30,6 +30,7 @@ jobs:
           echo "DATABASE_HOST=${{ secrets.DATABASE_HOST }}" >> .env
           echo "DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}" >> .env
           echo "DATABASE_NAME=${{ secrets.DATABASE_NAME }}" >> .env
+          echo "REDIS_HOST=${{ secrets.REDIS_HOST }}" >> .env
 
       - name: Hacer backup de la base de datos
         run: ./scripts/backup.sh
