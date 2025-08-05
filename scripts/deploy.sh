@@ -16,10 +16,10 @@ export DOCKERHUB_TOKEN
 echo $DOCKERHUB_USERNAME
 
 # Detener los contenedores actuales
-docker compose -f docker-compose.${ENV}.yml down
+docker compose -f ../docker-compose.${ENV}.yml down
 
 # Pull de las imágenes más recientes desde Docker Hub
-docker compose -f docker-compose.${ENV}.yml pull
+docker compose -f ../docker-compose.${ENV}.yml pull
 
 # Iniciar los servicios con las nuevas imágenes
-docker compose -f docker-compose.${ENV}.yml up -d
+docker compose -f ../docker-compose.${ENV}.yml up -d

@@ -2,7 +2,7 @@
 
 ENV=$1
 # URL del health check. Se podría obtener de variables de entorno si están configuradas.
-URL="http://localhost:8000/health" 
+URL="http://localhost:8080/healthz" 
 
 # Lógica de bucle para esperar a que la app esté lista
 for i in $(seq 1 10); do
