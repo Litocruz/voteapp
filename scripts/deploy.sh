@@ -1,0 +1,15 @@
+#!/bin/bash
+
+ENV=$1
+
+# Navegar al directorio del proyecto
+cd /home/jlamadrid/code/dia21/roxs-voting-app
+
+# Detener los contenedores actuales
+docker compose -f docker-compose.${ENV}.yml down
+
+# Pull de las imágenes más recientes desde Docker Hub
+docker compose -f docker-compose.${ENV}.yml pull
+
+# Iniciar los servicios con las nuevas imágenes
+docker compose -f docker-compose.${ENV}.yml up -d

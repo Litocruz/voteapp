@@ -1,5 +1,6 @@
 services:
   vote:
+    image: litocruz/vote
     build:
       context: ./vote
     environment:
@@ -21,12 +22,13 @@ services:
       - '6379:6379'  
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
-      interval: 5s                     # Check every 5 seconds
-      timeout: 3s                      # Wait up to 3 seconds for a response
-      retries: 5                       # Retry 5 times before marking as unhealthy
-      start_period: 5s                 # Give Redis 5 seconds to start up before checking
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
 
   worker:
+    image: litocruz/worker
     build:
       context: ./worker
     environment:
@@ -45,6 +47,7 @@ services:
         condition: service_healthy
 
   result:
+    image: litocruz/result
     build:
       context: ./result
     environment:
@@ -79,5 +82,3 @@ services:
 
 volumes:
   pgdata:
-
-
