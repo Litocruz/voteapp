@@ -14,7 +14,7 @@ jobs:
     runs-on: self-hosted
     environment: # Requiere aprobación manual
       name: production
-      url: 127.0.0.1:8080
+      url: http://localhost:8080
 
     steps:
       - name: Checkout del codigo
@@ -43,8 +43,8 @@ jobs:
 
       - name: Construir y subir imagenes de Docker
         run: |
-          docker compose -f docker-compose.prod.yml build
-          docker compose -f docker-compose.prod.yml push
+          docker compose -f docker-compose.production.yml build
+          docker compose -f docker-compose.production.yml push
 
       - name: Ejecutar deployment script
         run: ./scripts/deploy.sh production
