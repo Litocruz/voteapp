@@ -56,3 +56,12 @@ jobs:
         run: |
           # Comando para enviar una notificacion a Slack, email, etc.
           echo "Deployment de version ${{ github.event.inputs.version }} a produccion exitoso."
+          # URL de la API de Telegram para enviar mensajes
+          TELEGRAM_API_URL="https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"
+          
+          # Mensaje a enviar. Se usa la variable del workflow para la versión.
+          MESSAGE="✅ Despliegue de la version ${{ github.event.inputs.version }} a producción exitoso."
+
+          # Hacer la petición POST usando curl
+          # -s: modo silencioso, -X POST: tipo de petición, -d: datos a enviar
+          curl -s -X POST "$TELEGRAM_API_URL" -d chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" -d text="$MESSAGE"
