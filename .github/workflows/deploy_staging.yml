@@ -1,5 +1,5 @@
 
-name: Auto-Deploy a Staging
+name: Auto-Deploy a Staging por ${{ github.actor }}
 
 on:
   workflow_run:

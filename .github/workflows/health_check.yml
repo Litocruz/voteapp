@@ -2,7 +2,7 @@ name: Monitoreo Continuo de Produccion
 
 on:
   schedule:
-    - cron: '*/30 * * * *' # Cada 30 minutos
+    #- cron: '*/30 * * * *' # Cada 30 minutos
 
 jobs:
   monitor:
